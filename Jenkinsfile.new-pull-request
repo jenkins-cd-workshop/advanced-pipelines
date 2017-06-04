@@ -20,3 +20,4 @@ node {
             sh "hub pull-request -m 'New file: ${file}'"
         }
     }
+}

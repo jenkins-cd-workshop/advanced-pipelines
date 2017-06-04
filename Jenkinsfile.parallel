@@ -1,0 +1,21 @@
+node {
+    timestamps {
+        stage "Checkout", {
+            checkout scm
+        }
+
+        stage "Parallel heavy work", {
+            def actions = [:]
+            actions["a"] = {
+                sh "./heavy-work.sh 10"
+            }
+            actions["b"] = {
+                sh "./heavy-work.sh 20"
+            }
+            actions["c"] = {
+                sh "./heavy-work.sh 30"
+            }
+            parallel actions
+        }
+    }
+}

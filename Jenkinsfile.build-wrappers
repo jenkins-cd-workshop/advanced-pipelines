@@ -1,11 +1,15 @@
 timestamps {
-    wrap([$class: 'AnsiColorBuildWrapper']) {
+    wrap([$class: "AnsiColorBuildWrapper"]) {
+        stage "Checkout", {
+            checkout scm
+        }
+
         stage "Example", {
             echo "Hello, world! This should be shown with a timestamp"
         }
 
         stage "Colorized", {
-            sh 'printf "\e[31mHello World\e[0m\n"'
+            sh "./colors.sh"
         }
     }
 }

@@ -5,7 +5,7 @@ timestamps {
         }
 
         stage "Colorized", {
-            printf "\e[31mHello World\e[0m\n"
+            sh 'printf "\e[31mHello World\e[0m\n"'
         }
     }
 }

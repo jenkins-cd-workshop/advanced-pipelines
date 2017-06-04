@@ -1,0 +1,14 @@
+node {
+    timestamps {
+        stage "Checkout", {
+            checkout scm
+        }
+
+        stage "Work using precious resource", {
+            lock("precious-resource") {
+                sh "./start.sh precious-resource"
+                sh "./heavy-work.sh 20"
+            }
+        }
+    }
+}

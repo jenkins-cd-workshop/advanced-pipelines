@@ -1,0 +1,15 @@
+node {
+    timestamps {
+        stage "Checkout", {
+            checkout scm
+        }
+
+        stage "Stop", {
+            timeout(time: 2, unit:'MINUTES') {
+                lock("precious-resource") {
+                    sh "./stop.sh precious-resource"
+                }
+            }
+        }
+    }
+}

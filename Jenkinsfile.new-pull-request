@@ -19,7 +19,7 @@ node {
 
         stage "Pull request", {
             sh "git push origin ${branch}"
-            sh "hub pull-request -m 'New file: ${file}'"
+            sh "hub pull-request -m 'New file: ${file}'\n\nGenerated from ${env.BUILD_URL}"
         }
     }
 }

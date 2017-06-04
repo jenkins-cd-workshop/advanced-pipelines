@@ -1,6 +1,6 @@
-timestamps {
-    wrap([$class: "AnsiColorBuildWrapper"]) {
-        node {
+node {
+    timestamps {
+        wrap([$class: "AnsiColorBuildWrapper"]) {
             stage "Checkout", {
                 checkout scm
             }

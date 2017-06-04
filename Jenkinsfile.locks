@@ -1,0 +1,14 @@
+node {
+    stage "Checkout", {
+    }
+
+    stage "Heavy work", {
+        lock("my-environment") {
+            sh "./heavy-work.sh 20"
+        }
+    }
+
+    stage "Completion", {
+        echo "If you get here, it means heavy-work.sh has completed"
+    }
+}

@@ -1,1 +1,1 @@
-printf "\\e[31mHello World\e[0m\n"
+printf "\e[31mHello World\e[0m\n"

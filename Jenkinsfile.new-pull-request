@@ -9,14 +9,16 @@ node {
             file = sh script: "./generate-new-file.sh ${env.BUILD_URL}", returnStdout: true
         }
 
+        def branch
         stage "Commit", {
             sh "git add *.txt"
-            sh "git checkout -b update/new_file_${env.BUILD_NUMBER}"
+            branch = "update/new_file_${env.BUILD_NUMBER}"
+            sh "git checkout -b ${branch}"
             sh "git commit -m 'Generated a new file'"
         }
 
         stage "Pull request", {
-            sh "git push"
+            sh "git push origin ${branch}"
             sh "hub pull-request -m 'New file: ${file}'"
         }
     }

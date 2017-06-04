@@ -1,15 +1,17 @@
 node {
-    stage "Checkout", {
-        checkout scm
-    }
-
-    stage "Heavy work", {
-        lock("my-environment") {
-            sh "./heavy-work.sh 20"
+    timestamps {
+        stage "Checkout", {
+            checkout scm
         }
-    }
 
-    stage "Completion", {
-        echo "If you get here, it means heavy-work.sh has completed"
+        stage "Heavy work", {
+            lock("my-environment") {
+                sh "./heavy-work.sh 20"
+            }
+        }
+
+        stage "Completion", {
+            echo "If you get here, it means heavy-work.sh has completed"
+        }
     }
 }

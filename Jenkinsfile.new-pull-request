@@ -12,7 +12,8 @@ node {
         def branch
         stage "Commit", {
             sh "git add *.txt"
-            branch = "update/new_file_${env.BUILD_NUMBER}"
+            def uniqueId = sh script: "date +%s | sha256sum | head -c 10", returnStdout: true
+            branch = "update/new_file_${env.BUILD_NUMBER}_${uniqueId}"
             sh "git checkout -b ${branch}"
             sh "git commit -m 'Generated a new file'"
         }

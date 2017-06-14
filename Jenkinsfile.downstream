@@ -1,0 +1,6 @@
+node {
+    stage "Reading parameter", {
+        def value = params.importantData ?: 'a_default'
+        echo "Value: ${value}"
+    }
+}

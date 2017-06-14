@@ -1,0 +1,10 @@
+node {
+    stage "Something to do", {
+        sh "sleep 10"
+    }
+
+    stage "Triggering downstream", {
+        def uniqueId = sh script: "date +%s | sha256sum | head -c 10", returnStdout: true
+        build job: "upstream", wait: false, parameters: [string(name: 'importantData', value: uniqueId)]
+    }
+}

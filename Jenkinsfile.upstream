@@ -5,6 +5,7 @@ node {
 
     stage "Triggering downstream", {
         def uniqueId = sh script: "date +%s | sha256sum | head -c 10", returnStdout: true
+        echo "Triggering downstream with importantData ${uniqueId}"
         build job: "downstream", wait: false, parameters: [string(name: 'importantData', value: uniqueId)]
     }
 }
